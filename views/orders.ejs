@@ -1,0 +1,44 @@
+<%- include("partials/header") -%>
+
+<% if (orders.length) { %>
+<div class="table-responsive-sm table-wrapper highlighted">
+    <table class="table table-dark table-borderless mb-0">
+        <thead>
+            <tr>
+                <th style="padding-left: 3rem;" scope="col">Trader</th>
+                <th scope="col">Coin</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Price Price</th>
+                <th scope="col">Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (const item of orders) { %>
+            <tr>  
+                <td style="padding-left: 3rem;"> <a href="/traderOrders/<%= item.trader %>"><%= item.trader %></a> </td>
+                <td> <%= item.coinID  %> </td>
+                <td> <%= item.amount %></td>
+                <td> <%= item.price %> $</td>
+                <% if( item.type == "buy" ) { %>
+                <td class="text-green">BUY</td>
+                <% } else { %>
+                <td class="text-red"">SELL</td>
+                <% } %>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+<% } else { %>
+    <div class="table-responsive-sm table-wrapper highlighted">
+        <table class="table table-dark table-borderless mb-0">
+            <thead>
+                <tr>
+                    <th style="padding-left: 3rem;" scope="col">NO ORDER AS REQUESTED</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+<% } %>
+
+<%- include("partials/footer") -%>
